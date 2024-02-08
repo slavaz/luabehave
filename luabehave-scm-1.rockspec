@@ -21,11 +21,6 @@ description = {
   license = "MIT <http://opensource.org/licenses/MIT>",
 }
 
-build = {
-   type = "builtin",
-   modules = {}
-}
-
 dependencies = {
   'lua >= 5.1',
   'say >= 1.4-1',
@@ -38,3 +33,11 @@ test_dependencies = {
 test = {
   type = "busted",
 }
+
+build = {
+   type = "builtin",
+   modules = {
+      ["luabehave.parser.line"] = "src/luabehave/parser/line.lua",
+   }
+}
+
