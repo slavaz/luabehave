@@ -1,0 +1,4 @@
+~|some_variable|
+!|param1|param2|param3|param4|
+ |123|456|789|
+ |aaa|ssss|ddd|val4|

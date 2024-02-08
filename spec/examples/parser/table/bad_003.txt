@@ -1,0 +1,4 @@
+~|name|
+!|row1|row2
+|123|345|
+# Closing delimiter is absent into a haeders definition.

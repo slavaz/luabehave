@@ -1,0 +1,3 @@
+# Empty line should break table with retcode = 5.
+# It's actually not an error, it's a kind of a command to finish up table parsing
+

@@ -1,3 +1,6 @@
 return {
-    verbose = true,
+default = {
+	verbose = true,
+	["exclude-pattern"] = "example",
+    }
 }

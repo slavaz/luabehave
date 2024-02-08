@@ -1,0 +1,3 @@
+|||
+!|||
+# Table header should be defined before any rows.

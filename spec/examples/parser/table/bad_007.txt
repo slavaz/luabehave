@@ -1,0 +1,5 @@
+~|name|
+!|row1|row2|
+!|row3|row4|
+|123|345|
+# Only one table header definition is allowed.

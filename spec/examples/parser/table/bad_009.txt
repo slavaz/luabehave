@@ -1,0 +1,5 @@
+~|some_variable|
+!|param1|param2|param3| # comment here not allowed
+ |123|456|789|
+ |aaa|ssss|ddd|
+# A comment should be started at newline

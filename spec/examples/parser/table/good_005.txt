@@ -1,0 +1,6 @@
+~|some_variable|
+!|param1|param2|param3|
+		          --- comment here is allowed
+ |123|456|789|0987|
+# comment here is allowed
+ |aaa|ssss|ddd|blabla|xxxx||yyyy|zzzz|
