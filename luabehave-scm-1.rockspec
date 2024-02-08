@@ -38,6 +38,7 @@ build = {
    type = "builtin",
    modules = {
       ["luabehave.parser.line"] = "src/luabehave/parser/line.lua",
+      ["luabehave.parser.table_line"] = "src/luabehave/parser/table_line.lua",
    }
 }
 
