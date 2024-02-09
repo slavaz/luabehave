@@ -37,8 +37,17 @@ test = {
 build = {
    type = "builtin",
    modules = {
+      ["luabehave.parser.comments"] = "src/luabehave/parser/comments.lua",
+      ["luabehave.parser.init"] = "src/luabehave/parser/init.lua",
+      ["luabehave.parser.keywords"] = "src/luabehave/parser/keywords.lua",
       ["luabehave.parser.line"] = "src/luabehave/parser/line.lua",
+      ["luabehave.parser.scenario"] = "src/luabehave/parser/scenario.lua",
+      ["luabehave.parser.steps"] = "src/luabehave/parser/steps.lua",
+      ["luabehave.parser.story"] = "src/luabehave/parser/story.lua",
+      ["luabehave.parser.table"] = "src/luabehave/parser/table.lua",
+      ["luabehave.parser.table_block"] = "src/luabehave/parser/table_block.lua",
       ["luabehave.parser.table_line"] = "src/luabehave/parser/table_line.lua",
+      ["luabehave.parser.utils"] = "src/luabehave/parser/utils.lua",
    }
 }
 

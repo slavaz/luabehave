@@ -1,25 +1,12 @@
 local parse_table_line = require("luabehave.parser.table_line")
+local utils = require("luabehave.parser.utils")
 
-local RET_VALUES = {
-    SUCCESS = 1,
-    SKIP = 2,
-    PARSE_ERROR = 3,
-    VALIDATION_ERROR = 4,
-    LINE_VALIDATION_ERROR = 5,
-}
-
-local function string_trim(s)
-    return s:gsub("^%s*(.-)%s*$", "%1")
-end
-
-local function string_startswith(s, prefix)
-    return s:sub(1, #prefix) == prefix
-end
+local RET_VALUES = utils.RET_VALUES
 
 local function parse_comments(table_context, line, lkeywords)
-    local line = string_trim(line)
+    local line = utils.trim(line)
     for _, comment in ipairs(lkeywords.comments) do
-        if string_startswith(line, comment) then
+        if utils.startswith(line, comment) then
             return RET_VALUES.SUCCESS
         end
     end
@@ -82,9 +69,9 @@ local function validate_line(table_context, line, keywords)
     local validated = RET_VALUES.LINE_VALIDATION_ERROR
     local result = "Line does not start with any of the table keywords."
     for _, keyword in pairs(table_keywords) do
-        if string_startswith(line, keyword) then
+        if utils.startswith(line, keyword) then
             validated = RET_VALUES.SUCCESS
-            result = nil
+            result = ''
             break
         end
     end
@@ -98,13 +85,13 @@ local function parse_table(table_context, line, keywords)
         [keywords.table_row] = table_row_handler ,
     }
     local ret_value, result
-    local line = string_trim(line)
+    local line = utils.trim(line)
     ret_value, result = validate_line(table_context, line, keywords)
     if ret_value ~= RET_VALUES.SUCCESS then
         return ret_value, result
     end
 
-    local line = string_trim(line)
+    local line = utils.trim(line)
     if not table_context.initialized then
         table_context.initialized = true
         table_context.parsing_started = false
@@ -119,7 +106,7 @@ local function parse_table(table_context, line, keywords)
     end
 
     for keyword, handler in pairs(keywords_map) do
-        if string_startswith(line, keyword) then
+        if utils.startswith(line, keyword) then
             ret_value, result = handler(table_context, line, keyword, keywords)
             if not ret_value ~= RET_VALUES.SKIP then
                 return ret_value, result
@@ -184,7 +171,6 @@ local function get_table_from_context(table_context)
 end
 
 return {
-    ret_codes = RET_VALUES,
     parse = parse_table,
     get = get_table_from_context,
 }

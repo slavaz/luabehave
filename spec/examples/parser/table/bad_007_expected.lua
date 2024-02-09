@@ -1,4 +1,4 @@
 return {
-    code = 4,
+    code = 5,
     msg = 'Only one table header definition is allowed.',
 }

@@ -1,5 +1,6 @@
 local table_parser = require("luabehave.parser.table")
 
+
 local path_to_examples = "spec/examples/parser/table"
 
 local keywords = {
@@ -21,7 +22,7 @@ describe("parse tables from examples", function()
             local table_context = {}
             for line in file:lines() do
                     local ret_value, result = table_parser.parse(table_context, line, keywords)
-                    assert.are.same(table_parser.ret_codes.SUCCESS, ret_value, ("Failed to parse file %s.txt: %s\nLine: '%s'"):format(file_path, result, line))
+                    assert.are.same(1, ret_value, ("Failed to parse file %s.txt: %s\nLine: '%s'"):format(file_path, result, line))
             end
             file:close()
 
@@ -43,7 +44,7 @@ describe("parse tables from examples", function()
             local ret_value, result
             for line in file:lines() do
                 ret_value, result = table_parser.parse(table_context, line, keywords)
-                if ret_value ~= table_parser.ret_codes.SUCCESS then
+                if ret_value ~= 1 then
                     break
                 end
             end
