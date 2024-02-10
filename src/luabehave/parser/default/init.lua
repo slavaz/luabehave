@@ -83,27 +83,23 @@ local function validate_story(context)
     return true, context.story
 end
 local function get_keywords_map(input_keywords)
-    local lkeywords = input_keywords or keywords.get_default()
-    local ret_value, result = keywords.validate(lkeywords)
-    if not ret_value then
-        return false, result
-    end
 
     local keywords_map = {
-        [lkeywords.story] = story.parse,
-        [lkeywords.story_background] = story.parse_background,
-        [lkeywords.scenario] = scenario.parse,
-        [lkeywords.before_step] = steps.parse_given,
-        [lkeywords.action_step] = steps.parse_when,
-        [lkeywords.after_step] = steps.parse_then,
-        [lkeywords.and_step] = steps.parse_and,
-        [lkeywords.scenario_parametrized] = scenario.parse_examples,
+        [input_keywords.story] = story.parse,
+        [input_keywords.story_background] = story.parse_background,
+        [input_keywords.scenario] = scenario.parse,
+        [input_keywords.before_step] = steps.parse_given,
+        [input_keywords.action_step] = steps.parse_when,
+        [input_keywords.after_step] = steps.parse_then,
+        [input_keywords.and_step] = steps.parse_and,
+        [input_keywords.scenario_parametrized] = scenario.parse_examples,
     }
-    return true, keywords_map, lkeywords
+    return true, keywords_map
 end
 
-local function parse_story(_, source, input_keywords)
-    local ret_value, keywords_map, lkeywords = get_keywords_map(input_keywords)
+local function parse_story(acxt, source)
+    local lkeywords = acxt.keywords.get()
+    local ret_value, keywords_map = get_keywords_map(lkeywords)
     if not ret_value then
         return false, keywords_map
     end
