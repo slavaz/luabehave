@@ -1,6 +1,8 @@
 local steps = {}
-local parse_line = require "luabehave.parser.line"
-local utils = require "luabehave.parser.utils"
+local parse_line = require "luabehave.parser.default.line"
+local utils = require "luabehave.parser.default.utils"
+local add_to_table = require "luabehave.utils".add_to_table
+local is_table_empty = require "luabehave.utils".is_table_empty
 
 local RET_VALUES = utils.RET_VALUES
 local STATE = utils.STORY_STATE
@@ -26,7 +28,7 @@ local function and_callback(context, line, args)
         return RET_VALUES.FAILURE, ("'%s' inside '%s' isn't not allowed"):format(
             args.keyword_step_name, context.keywords.examples)
     end
-    if not context.current_steps or utils.is_table_empty(context.current_steps) then
+    if not context.current_steps or is_table_empty(context.current_steps) then
         return RET_VALUES.FAILURE, ("'%s' without previous '%s', '%s' or '%s'"):format(
             args.keyword_step_name, context.keywords.before_step, context.keywords.action_step,
             context.keywords.after_step
@@ -46,7 +48,7 @@ local function parse_step(context, line, args)
     local ret_value, result = parse_line(line:sub(#a_keyword + 1), context.keywords)
     if not ret_value then return ret_value, result end
     context.current_step = result
-    utils.add_to_table(context.current_steps, context.current_step)
+    add_to_table(context.current_steps, context.current_step)
     return RET_VALUES.SUCCESS
 end
 

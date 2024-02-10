@@ -1,6 +1,6 @@
 package.path = "../?.lua;" .. package.path
 
-local parse_line = require("luabehave.parser.line")
+local parse_line = require("luabehave.parser.default.line")
 
 local function got_error(error_msg)
     return ("Expected line to be parsed successfully but got error: %s"):format(tostring(error_msg))

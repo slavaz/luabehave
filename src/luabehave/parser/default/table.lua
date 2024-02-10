@@ -1,5 +1,5 @@
-local parse_table_line = require("luabehave.parser.table_line")
-local utils = require("luabehave.parser.utils")
+local parse_table_line = require("luabehave.parser.default.table_line")
+local utils = require("luabehave.parser.default.utils")
 
 local RET_VALUES = utils.RET_VALUES
 

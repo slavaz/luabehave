@@ -1,4 +1,5 @@
-local utils = require("luabehave.parser.utils")
+local utils = require("luabehave.parser.default.utils")
+local add_to_table = require("luabehave.utils").add_to_table
 
 local STATE
 
@@ -13,7 +14,7 @@ local function parse_inside(context, char, lkeywords)
         context.buffer = {}
         return true
     end
-    utils.add_to_table(context.buffer, char)
+    add_to_table(context.buffer, char)
     return true
 end
 
@@ -26,7 +27,7 @@ local function parse_delimiter(context, char, lkeywords)
 end
 
 local function parse_inside_escape(context, char, lkeywords)
-    utils.add_to_table(context.buffer, char)
+    add_to_table(context.buffer, char)
     context.state = STATE.INSIDE
     return true
 end

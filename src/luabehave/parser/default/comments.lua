@@ -1,5 +1,5 @@
 local comments = {}
-local utils = require("luabehave.parser.utils")
+local utils = require("luabehave.parser.default.utils")
 
 local RET_VALUES = utils.RET_VALUES
 

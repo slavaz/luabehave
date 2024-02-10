@@ -1,4 +1,4 @@
-local parse_table_line = require("luabehave.parser.table_line")
+local parse_table_line = require("luabehave.parser.default.table_line")
 
 local function got_error(error_msg)
     return ("Expected line to be parsed successfully but got error: %s"):format(tostring(error_msg))

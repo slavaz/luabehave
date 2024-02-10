@@ -37,17 +37,19 @@ test = {
 build = {
    type = "builtin",
    modules = {
-      ["luabehave.parser.comments"] = "src/luabehave/parser/comments.lua",
       ["luabehave.parser.init"] = "src/luabehave/parser/init.lua",
-      ["luabehave.parser.keywords"] = "src/luabehave/parser/keywords.lua",
-      ["luabehave.parser.line"] = "src/luabehave/parser/line.lua",
-      ["luabehave.parser.scenario"] = "src/luabehave/parser/scenario.lua",
-      ["luabehave.parser.steps"] = "src/luabehave/parser/steps.lua",
-      ["luabehave.parser.story"] = "src/luabehave/parser/story.lua",
-      ["luabehave.parser.table"] = "src/luabehave/parser/table.lua",
-      ["luabehave.parser.table_block"] = "src/luabehave/parser/table_block.lua",
-      ["luabehave.parser.table_line"] = "src/luabehave/parser/table_line.lua",
-      ["luabehave.parser.utils"] = "src/luabehave/parser/utils.lua",
+      ["luabehave.parser.default.init"] = "src/luabehave/parser/default/init.lua",
+      ["luabehave.parser.default.comments"] = "src/luabehave/parser/default/comments.lua",
+      ["luabehave.parser.default.help"] = "src/luabehave/parser/default/help.lua",
+      ["luabehave.parser.default.keywords"] = "src/luabehave/parser/default/keywords.lua",
+      ["luabehave.parser.default.line"] = "src/luabehave/parser/default/line.lua",
+      ["luabehave.parser.default.scenario"] = "src/luabehave/parser/default/scenario.lua",
+      ["luabehave.parser.default.steps"] = "src/luabehave/parser/default/steps.lua",
+      ["luabehave.parser.default.story"] = "src/luabehave/parser/default/story.lua",
+      ["luabehave.parser.default.table"] = "src/luabehave/parser/default/table.lua",
+      ["luabehave.parser.default.table_block"] = "src/luabehave/parser/default/table_block.lua",
+      ["luabehave.parser.default.table_line"] = "src/luabehave/parser/default/table_line.lua",
+      ["luabehave.parser.default.utils"] = "src/luabehave/parser/default/utils.lua",
    }
 }
 

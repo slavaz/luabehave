@@ -1,12 +1,13 @@
 local story = {}
-local utils = require("luabehave.parser.utils")
+local utils = require("luabehave.parser.default.utils")
+local add_to_table = require("luabehave.utils").add_to_table
 
 local RET_VALUES = utils.RET_VALUES
 local STATE = utils.STORY_STATE
 
 function story.parse_description(context, line)
     if context.state == STATE.STORY then
-        utils.add_to_table(context.story.description, line)
+        add_to_table(context.story.description, line)
         return RET_VALUES.SUCCESS
     end
     return RET_VALUES.SKIP

@@ -24,12 +24,4 @@ function utils.startswith(s, prefix)
     return s:sub(1, #prefix) == prefix
 end
 
-function utils.add_to_table(table, element)
-    table[#table + 1] = element
-end
-
-function utils.is_table_empty(tbl)
-    return next(tbl) == nil
-end
-
 return utils

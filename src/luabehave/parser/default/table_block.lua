@@ -1,7 +1,8 @@
 local table_block = {}
 
-local utils = require "luabehave.parser.utils"
-local table_parser = require "luabehave.parser.table"
+local utils = require "luabehave.parser.default.utils"
+local table_parser = require "luabehave.parser.default.table"
+local is_table_empty = require "luabehave.utils".is_table_empty
 
 local RET_VALUES = utils.RET_VALUES
 local STATE = utils.STORY_STATE
@@ -21,7 +22,7 @@ function table_block.parse(context, line)
     if ret_code ~= RET_VALUES.LINE_VALIDATION_ERROR then
         return RET_VALUES.FAILURE, result
     end
-    if utils.is_table_empty(context.table) then
+    if is_table_empty(context.table) then
         return RET_VALUES.SKIP
     end
     if context.state == STATE.SCENARIO_EXAMPLES then

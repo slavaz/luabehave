@@ -1,4 +1,4 @@
-local table_parser = require("luabehave.parser.table")
+local table_parser = require("luabehave.parser.default.table")
 
 
 local path_to_examples = "spec/examples/parser/table"

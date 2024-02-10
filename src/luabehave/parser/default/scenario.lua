@@ -1,5 +1,8 @@
 local scenario = {}
-local utils = require("luabehave.parser.utils")
+local utils = require("luabehave.parser.default.utils")
+
+local add_to_table = require("luabehave.utils").add_to_table
+local is_table_empty = require("luabehave.utils").is_table_empty
 
 local RET_VALUES = utils.RET_VALUES
 local STATE = utils.STORY_STATE
@@ -14,7 +17,7 @@ function scenario.parse(context, line)
         then_steps = {},
         examples = nil,
     }
-    utils.add_to_table(context.story.scenarios, context.current_scenario)
+    add_to_table(context.story.scenarios, context.current_scenario)
     context.current_steps = nil
     context.current_step = nil
     return RET_VALUES.SUCCESS
@@ -30,7 +33,7 @@ function scenario.parse_examples(context, line)
             ("'%s' must be defined inside a '%s'"):format(context.keywords.scenario_parametrized,
                 context.keywords.scenario)
     end
-    if utils.is_table_empty(context.current_scenario.then_steps) then
+    if is_table_empty(context.current_scenario.then_steps) then
         return RET_VALUES.FAILURE, ("'%s' must be defined after at least one '%s' step")
             :format(context.keywords.scenario_parametrized, context.keywords.after_step)
     end
