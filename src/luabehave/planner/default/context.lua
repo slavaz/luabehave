@@ -48,6 +48,7 @@ function ContextClass:snapshot()
         current_environment = self.current_environment,
         suite_name = self.suite.name,
         story_name = self.suite.story.name,
+        story_path = self.suite.story.path,
         scenario_name = self.suite.story.scenario.name,
         scenario_unimplemented = self.suite.story.scenario.unimplemented,
         scenario_examples_present = self.suite.story.scenario.examples.present,

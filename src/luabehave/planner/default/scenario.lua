@@ -100,8 +100,6 @@ function scenario.make_plan(acxt, context)
             context:init_scenario(parsed_scenario, parsed_scenario.name)
             scenario.make_single_plan(acxt, context)
         end
-        context.current_scenario = nil
-        context.current_steps = nil
     end
 end
 

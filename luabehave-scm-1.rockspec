@@ -88,5 +88,8 @@ build = {
       ["luabehave.reporter.default.collect"] = "src/luabehave/reporter/default/collect.lua",
       ["luabehave.reporter.default.help"] = "src/luabehave/reporter/default/help.lua",
       ["luabehave.reporter.default.show"] = "src/luabehave/reporter/default/show.lua",
+      ["luabehave.runner.init"] = "src/luabehave/runner/init.lua",
+      ["luabehave.runner.default.init"] = "src/luabehave/runner/default/init.lua",
+      ["luabehave.utils"] = "src/luabehave/utils.lua",
    }
 }

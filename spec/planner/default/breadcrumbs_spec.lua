@@ -7,10 +7,10 @@ describe("Breadcrumbs", function()
                 get = function() return { suite = "Suite", story = "Story", scenario = "Scenario" } end
             }
         }
-        local context = {
+        local context_snapshot = {
             suite = { story = { scenario = {} } },
         }
-        local breadcrumbs = make_breadcrumbs(acxt, context, "Step Name")
+        local breadcrumbs = make_breadcrumbs(acxt, context_snapshot, "Step Name")
         assert.are.same({}, breadcrumbs)
     end)
 
@@ -20,10 +20,9 @@ describe("Breadcrumbs", function()
                 get = function() return { suite = "Suite", story = "Story", scenario = "Scenario" } end
             }
         }
-        local context = {
-            suite = { name = "SuiteName", story = { scenario = {} } },
-        }
-        local breadcrumbs = make_breadcrumbs(acxt, context, "Step Name")
+        local context_snapshot = { suite_name = "SuiteName" }
+
+        local breadcrumbs = make_breadcrumbs(acxt, context_snapshot, "Step Name")
         assert.are.same({ "Suite SuiteName" }, breadcrumbs)
     end)
 
@@ -33,10 +32,10 @@ describe("Breadcrumbs", function()
                 get = function() return { suite = "Suite", story = "Story", scenario = "Scenario" } end
             }
         }
-        local context = {
-            suite = { name = "SuiteName", story = { name = "StoryName", scenario = {} } },
+        local context_snapshot = {
+            suite_name = "SuiteName", story_name = "StoryName"
         }
-        local breadcrumbs = make_breadcrumbs(acxt, context, "Step Name")
+        local breadcrumbs = make_breadcrumbs(acxt, context_snapshot, "Step Name")
         assert.are.same({ "Suite SuiteName", "Story StoryName (nil)" }, breadcrumbs)
     end)
 
@@ -46,10 +45,10 @@ describe("Breadcrumbs", function()
                 get = function() return { suite = "Suite", story = "Story", scenario = "Scenario" } end
             }
         }
-        local context = {
-            suite = { name = "SuiteName", story = { name = "StoryName", path = "StoryPath", scenario = {} } },
+        local context_snapshot = {
+            suite_name = "SuiteName", story_name = "StoryName", story_path = "StoryPath"
         }
-        local breadcrumbs = make_breadcrumbs(acxt, context, "Step Name")
+        local breadcrumbs = make_breadcrumbs(acxt, context_snapshot, "Step Name")
         assert.are.same({ "Suite SuiteName", "Story StoryName (StoryPath)" }, breadcrumbs)
         
     end)
@@ -59,10 +58,10 @@ describe("Breadcrumbs", function()
                 get = function() return { suite = "Suite", story = "Story", scenario = "Scenario" } end
             }
         }
-        local context = {
-            suite = { name = "SuiteName", story = { name = "StoryName", scenario = { name = "ScenarioName" } } },
+        local context_snapshot = {
+            suite_name = "SuiteName", story_name = "StoryName", scenario_name = "ScenarioName"
         }
-        local breadcrumbs = make_breadcrumbs(acxt, context, "Step Name")
+        local breadcrumbs = make_breadcrumbs(acxt, context_snapshot, "Step Name")
         assert.are.same({ "Suite SuiteName", "Story StoryName (nil)", "Scenario ScenarioName" }, breadcrumbs)
     end)
 end)

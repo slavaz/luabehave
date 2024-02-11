@@ -46,11 +46,11 @@ local function make_background_plan(acxt, context)
 end
 
 local function in_current_suite(context, story, default_suite_name)
-    if context.current_suite.name == default_suite_name then
+    if context.suite.name == default_suite_name then
         return true
     end
     for _, suite in ipairs(story.suites) do
-        if suite == context.current_suite.name then
+        if suite == context.suite.name then
             return true
         end
     end
@@ -68,7 +68,7 @@ return function(acxt, context)
             context.step_type = acxt.keywords.get(acxt).story_background
             make_background_plan(acxt, context, story)
             scenario.make_plan(acxt, context, story)
-            context.current_environment = context.current_story.environment
+            context.current_environment = context.suite.story.environment
             add_after_story_step(acxt, context)
             context.current_story = nil
         end
