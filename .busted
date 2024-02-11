@@ -1,5 +1,6 @@
 return {
 default = {
+	helper = "./src/luabehave/luassert/has_value.lua",
 	verbose = true,
 	["exclude-pattern"] = "example",
     }

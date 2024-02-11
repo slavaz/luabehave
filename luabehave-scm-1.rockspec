@@ -23,7 +23,7 @@ description = {
 
 dependencies = {
   'lua >= 5.1',
-  'say >= 1.4-1',
+  'luassert >= 1.8.0',
 }
 
 test_dependencies = {
@@ -37,6 +37,7 @@ test = {
 build = {
    type = "builtin",
    modules = {
+      ["luabehave.luassert.has_value"] = "src/luabehave/luassert/has_value.lua",
       ["luabehave.finder.default.args"] = "src/luabehave/finder/default/args.lua",
       ["luabehave.finder.default.help"] = "src/luabehave/finder/default/help.lua",
       ["luabehave.finder.default.init"] = "src/luabehave/finder/default/init.lua",
@@ -76,4 +77,3 @@ build = {
       ["luabehave.reporter.default.show"] = "src/luabehave/reporter/default/show.lua",
    }
 }
-
