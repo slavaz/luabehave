@@ -1,5 +1,6 @@
 local function get(acxt)
     return {
+        suite                 = "Suite: ",
         story                 = "Story: ",
         story_background      = "Background:",
         scenario              = "Scenario: ",

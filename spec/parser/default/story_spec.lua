@@ -26,7 +26,7 @@ describe("Parse stories from examples", function()
     end)
 
     it("should fail to parse a story from example file", function()
-        local test_amount = 12
+        local test_amount = 13
 
         for i = 1, test_amount do
             local file_name = ("bad_%03d"):format(i)

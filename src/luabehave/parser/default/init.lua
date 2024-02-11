@@ -2,6 +2,7 @@ local utils = require "luabehave.parser.default.utils"
 local steps = require "luabehave.parser.default.steps"
 local scenario = require "luabehave.parser.default.scenario"
 local story = require "luabehave.parser.default.story"
+local suite = require "luabehave.parser.default.suite"
 local comments = require "luabehave.parser.default.comments"
 local table_block = require "luabehave.parser.default.table_block"
 
@@ -85,6 +86,7 @@ end
 local function get_keywords_map(input_keywords)
 
     local keywords_map = {
+        [input_keywords.suite] = suite.parse,
         [input_keywords.story] = story.parse,
         [input_keywords.story_background] = story.parse_background,
         [input_keywords.scenario] = scenario.parse,
@@ -109,6 +111,7 @@ local function parse_story(acxt, source)
         keywords_map = keywords_map,
 
         story = {
+            suites = {},
             description = {},
             background = nil,
             scenarios = {},

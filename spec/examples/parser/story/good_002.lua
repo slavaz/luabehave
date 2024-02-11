@@ -32,6 +32,7 @@ return {
         ""
     },
     name = "some story name",
+    suites = { "suite1", "suite2", "suite3" },
     scenarios = {
         {
             examples = { { name1 = "value1", param2 = "value2" }, { name1 = "value3", param2 = "value4" } },

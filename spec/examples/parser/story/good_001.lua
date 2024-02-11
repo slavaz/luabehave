@@ -12,6 +12,7 @@ return {
             name="a step with a table named {table_1}"
         }
     },
+    suites ={},
     description={"Here miltiline description.", "Line2.", "Line3", ""},
     name="some story name",
     scenarios={
