@@ -69,6 +69,11 @@ build = {
       ["luabehave.parser.default.table_block"] = "src/luabehave/parser/default/table_block.lua",
       ["luabehave.parser.default.table_line"] = "src/luabehave/parser/default/table_line.lua",
       ["luabehave.parser.default.utils"] = "src/luabehave/parser/default/utils.lua",
+      ["luabehave.reporter.init"] = "src/luabehave/reporter/init.lua",
+      ["luabehave.reporter.default.init"] = "src/luabehave/reporter/default/init.lua",
+      ["luabehave.reporter.default.collect"] = "src/luabehave/reporter/default/collect.lua",
+      ["luabehave.reporter.default.help"] = "src/luabehave/reporter/default/help.lua",
+      ["luabehave.reporter.default.show"] = "src/luabehave/reporter/default/show.lua",
    }
 }
 
