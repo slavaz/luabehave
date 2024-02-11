@@ -32,6 +32,9 @@ local function run_cmd_parser()
         :description "Path to the configuration file"
         :argname "<file>"
         :default ".luabehave"
+    parser:option "--suites"
+        :description "Comma-separated list of suites to run"
+        :argname "<suite1>,<suite2>,..."
     return parser:parse()
 end
 return function()

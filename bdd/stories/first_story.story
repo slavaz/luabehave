@@ -1,3 +1,4 @@
+Suite: testSuite
 Story: It's a first story for the engine
 
 Some decription here, don't know what I should put here at the historical moment, huh :)
