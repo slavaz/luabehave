@@ -1,0 +1,4 @@
+#!/bin/sh
+luarocks remove luabehave  --force --local >/dev/null
+luarocks make --local
+luabehave "$@"

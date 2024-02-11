@@ -22,8 +22,9 @@ description = {
 }
 
 dependencies = {
-  'lua >= 5.1',
-  'luassert >= 1.8.0',
+  'lua >= 5.2',
+  'luassert >= 1.9.0',
+  'argparse >= 0.7.1',
 }
 
 test_dependencies = {
@@ -90,6 +91,16 @@ build = {
       ["luabehave.reporter.default.show"] = "src/luabehave/reporter/default/show.lua",
       ["luabehave.runner.init"] = "src/luabehave/runner/init.lua",
       ["luabehave.runner.default.init"] = "src/luabehave/runner/default/init.lua",
+      ["luabehave.runner.default.help"] = "src/luabehave/runner/default/help.lua",
       ["luabehave.utils"] = "src/luabehave/utils.lua",
-   }
+      ["luabehave.args.file"] = "src/luabehave/args/file.lua",
+      ["luabehave.args.validate"] = "src/luabehave/args/validate.lua",
+      ["luabehave.init"] = "src/luabehave/init.lua",
+      ["luabehave.run"] = "src/luabehave/run.lua",
+   },
+   install = {
+      bin = {
+          ['luabehave'] = 'bin/luabehave'
+      }
+    }
 }

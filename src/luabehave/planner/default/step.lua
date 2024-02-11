@@ -9,6 +9,7 @@ local function make_step(acxt, context, implemented_steps, step)
                 acxt.output.warning(("[Skipping]: %s"):format(step.name))
             else
                 acxt.output.error(("[Unimplemented]: %s"):format(step.name))
+                acxt.exit_code = 1
             end
             return
         end
