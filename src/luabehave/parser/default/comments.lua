@@ -1,7 +1,8 @@
 local comments = {}
-local utils = require("luabehave.parser.default.utils")
+local parser_utils = require("luabehave.parser.default.utils")
+local utils = require("luabehave.utils")
 
-local RET_VALUES = utils.RET_VALUES
+local RET_VALUES = parser_utils.RET_VALUES
 
 function comments.parse(context, line)
     local line = utils.trim(line)

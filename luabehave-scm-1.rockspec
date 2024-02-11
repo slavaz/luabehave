@@ -64,6 +64,7 @@ build = {
       ["luabehave.parser.default.scenario"] = "src/luabehave/parser/default/scenario.lua",
       ["luabehave.parser.default.steps"] = "src/luabehave/parser/default/steps.lua",
       ["luabehave.parser.default.story"] = "src/luabehave/parser/default/story.lua",
+      ["luabehave.parser.default.suite"] = "src/luabehave/parser/default/suite.lua",
       ["luabehave.parser.default.table"] = "src/luabehave/parser/default/table.lua",
       ["luabehave.parser.default.table_block"] = "src/luabehave/parser/default/table_block.lua",
       ["luabehave.parser.default.table_line"] = "src/luabehave/parser/default/table_line.lua",

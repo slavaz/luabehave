@@ -16,12 +16,4 @@ utils.STORY_STATE = {
     SCENARIO_EXAMPLES = 8,
 }
 
-function utils.trim(s)
-    return s:gsub("^%s*(.-)%s*$", "%1")
-end
-
-function utils.startswith(s, prefix)
-    return s:sub(1, #prefix) == prefix
-end
-
 return utils

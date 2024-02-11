@@ -1,11 +1,12 @@
 local scenario = {}
-local utils = require("luabehave.parser.default.utils")
+local parser_utils = require("luabehave.parser.default.utils")
+local utils = require("luabehave.utils")
 
 local add_to_table = require("luabehave.utils").add_to_table
 local is_table_empty = require("luabehave.utils").is_table_empty
 
-local RET_VALUES = utils.RET_VALUES
-local STATE = utils.STORY_STATE
+local RET_VALUES = parser_utils.RET_VALUES
+local STATE = parser_utils.STORY_STATE
 
 function scenario.parse(context, line)
     context.state = STATE.SCENARIO

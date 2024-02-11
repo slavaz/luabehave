@@ -1,7 +1,8 @@
 local parse_table_line = require("luabehave.parser.default.table_line")
-local utils = require("luabehave.parser.default.utils")
+local parser_utils = require("luabehave.parser.default.utils")
+utils = require("luabehave.utils")
 
-local RET_VALUES = utils.RET_VALUES
+local RET_VALUES = parser_utils.RET_VALUES
 
 local function parse_comments(table_context, line, lkeywords)
     local line = utils.trim(line)

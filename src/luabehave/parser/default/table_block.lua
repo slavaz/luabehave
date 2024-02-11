@@ -1,11 +1,12 @@
 local table_block = {}
 
-local utils = require "luabehave.parser.default.utils"
+local parser_utils = require "luabehave.parser.default.utils"
 local table_parser = require "luabehave.parser.default.table"
 local is_table_empty = require "luabehave.utils".is_table_empty
+local utils = require "luabehave.utils"
 
-local RET_VALUES = utils.RET_VALUES
-local STATE = utils.STORY_STATE
+local RET_VALUES = parser_utils.RET_VALUES
+local STATE = parser_utils.STORY_STATE
 
 function table_block.parse(context, line)
     local line = utils.trim(line)

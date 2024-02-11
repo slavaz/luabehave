@@ -1,15 +1,16 @@
-local utils = require "luabehave.parser.default.utils"
+local parser_utils = require "luabehave.parser.default.utils"
 local steps = require "luabehave.parser.default.steps"
 local scenario = require "luabehave.parser.default.scenario"
 local story = require "luabehave.parser.default.story"
 local suite = require "luabehave.parser.default.suite"
 local comments = require "luabehave.parser.default.comments"
 local table_block = require "luabehave.parser.default.table_block"
+local utils = require "luabehave.utils"
 
-local is_table_empty = require "luabehave.utils".is_table_empty
+local is_table_empty = utils.is_table_empty
 
-local RET_VALUES = utils.RET_VALUES
-local STATE = utils.STORY_STATE
+local RET_VALUES = parser_utils.RET_VALUES
+local STATE = parser_utils.STORY_STATE
 
 local additional_parsers = {
     comments.parse,
