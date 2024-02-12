@@ -6,6 +6,7 @@ local suite = require "luabehave.parser.default.suite"
 local comments = require "luabehave.parser.default.comments"
 local table_block = require "luabehave.parser.default.table_block"
 local utils = require "luabehave.utils"
+local table_parser = require "luabehave.parser.default.table"
 
 local is_table_empty = utils.is_table_empty
 
@@ -84,6 +85,13 @@ local function validate_story(context)
     end
     return true, context.story
 end
+local function finalize_story(context)
+    if context.state == STATE.SCENARIO_EXAMPLES then
+        context.current_scenario.examples = table_parser.get(context.table)
+        context.table = {}
+    end
+    return RET_VALUES.SUCCESS
+end
 local function get_keywords_map(input_keywords)
 
     local keywords_map = {
@@ -144,6 +152,10 @@ local function parse_story(acxt, source)
     end
     if not source_handler_found then
         return false, "Invalid source type: " .. type(source)
+    end
+    ret_value, result = finalize_story(context)
+    if not ret_value then
+        return ret_value, result
     end
     return validate_story(context)
 end

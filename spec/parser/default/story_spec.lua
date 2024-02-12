@@ -9,7 +9,7 @@ local application_contaxt = {
 }
 describe("Parse stories from examples", function()
     it("Should parse a story from example file", function()
-        local test_amount = 2
+        local test_amount = 3
 
         for i = 1, test_amount do
             local file_name = ("good_%03d"):format(i)
