@@ -7,7 +7,6 @@ end
 
 local default_planner = {
     name = function() return 'default' end,
-    help = require('luabehave.runner.default.help'),
 
     run = run,
 }

@@ -11,7 +11,6 @@ local levels = {
  
 local default_output = {
     name = function() return 'default' end,
-    help = require('luabehave.output.default.help'),
 
     level = LEVELS.INFO,
 }

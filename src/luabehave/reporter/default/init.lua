@@ -6,7 +6,6 @@ local default_reporter = {
     context = {},
 
     name = function() return 'default' end,
-    help = require('luabehave.reporter.default.help'),
 
     init = function(acxt)
         acxt.reporter.context = {

@@ -8,7 +8,6 @@ end
 
 local default_planner = {
     name = function() return 'default' end,
-    help = require('luabehave.planner.default.help'),
 
     make_plan = make_plan,
 }

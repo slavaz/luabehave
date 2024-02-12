@@ -59,13 +59,8 @@ function utils.split_by_comma(line)
     return result
 end
 
-function utils.get_submodule(args, args_key, factory_help_func, submodules, default_key)
+function utils.get_submodule(args, args_key,  submodules, default_key)
     local submodule = submodules[args[args_key]] or submodules[default_key]
-    local submodule_help = submodule.help
-    submodule.help = function(args)
-        return factory_help_func(args) .. "\n" .. submodule.name() .. "\n" ..
-            submodule_help(args)
-    end
     return submodule
 end
 

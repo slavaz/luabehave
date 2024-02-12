@@ -1,4 +1,3 @@
-local utils = require("luabehave.utils")
 return function(args)
     if not args then
         error("No args provided")

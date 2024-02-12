@@ -162,7 +162,6 @@ end
 
 local parser = {
     name = function() return 'default' end,
-    help = require('luabehave.parser.default.help'),
 
     parse = parse_story,
 }

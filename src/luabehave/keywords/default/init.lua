@@ -25,7 +25,6 @@ end
 
 local default_keywords = {
     name = function() return 'default' end,
-    help = require('luabehave.keywords.default.help'),
 
     get = get,
 
