@@ -1,0 +1,8 @@
+- improove 'reporter' module to print some statistic at the end of running test suites.
+- add github ci/cd
+- upload the project as a lua module to https://luarocks.org/
+- improove (or write new one) 'output' submodule (eg. add colors to output)
+- add more logging (with different levels) of stories/steps/steps/scenarios. Eg. add output.trace(step.args) call and so on...
+- fixing bugs if found
+- move some code related to steps execution from planner to 'runner'.
+
