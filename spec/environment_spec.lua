@@ -1,12 +1,17 @@
 describe("Testing environment functions", function()
-    local environment = require("luabehave.planner.default.environment")
+    local environment = require("luabehave.environment")
+    -- luacheck: push ignore _ENV
     local orig_ENV = _ENV
-
+    -- luacheck: pop
     teardown(function()
+        -- luacheck: push ignore _ENV
         _ENV = orig_ENV
+        -- luacheck: pop
     end)
     it("should set environment for function correctly", function()
+        -- luacheck: push ignore _ENV
         local func = function() return _ENV end
+        -- luacheck: pop
         local env = { var = "value" }
         environment.set_for_func(func, env)
 

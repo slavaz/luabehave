@@ -1,4 +1,4 @@
-local environment = require('luabehave.planner.default.environment')
+local environment = require('luabehave.environment')
 
 local ContextClass = {}
 ContextClass.__index = ContextClass

@@ -1,4 +1,4 @@
-local environment = require("luabehave.planner.default.environment")
+local environment = require("luabehave.environment")
 local get_breadcrumbs = require("luabehave.planner.default.breadcrumbs")
 local output_levels = require("luabehave.output.levels")
 

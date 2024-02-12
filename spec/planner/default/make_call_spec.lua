@@ -21,7 +21,7 @@ describe("planner default make_call tests", function()
     })
 
     setup(function()
-        package.loaded["luabehave.planner.default.environment"] = environment
+        package.loaded["luabehave.environment"] = environment
         package.loaded["luabehave.planner.default.breadcrumbs"] = get_breadcrumbs
         package.loaded["luabehave.output.levels"] = output_levels
         _G.pcall = mock_pcall
@@ -29,7 +29,7 @@ describe("planner default make_call tests", function()
 
     teardown(function()
         _G.pcall = orig_pcall
-        package.loaded["luabehave.planner.default.environment"] = nil
+        package.loaded["luabehave.environment"] = nil
         package.loaded["luabehave.planner.default.breadcrumbs"] = nil
         package.loaded["luabehave.output.levels"] = nil
     end)

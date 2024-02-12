@@ -1,3 +1,5 @@
+local environment = require("luabehave.environment")
+
 local function file_exists(filename)
     local file = io.open(filename, "r")
     if not file then
@@ -9,7 +11,10 @@ end
 
 return function(config_file_name)
     if file_exists(config_file_name) then
-        return dofile(config_file_name)
+        local executable_chunk = assert(loadfile(config_file_name))
+        environment.set_for_func(executable_chunk, {})
+        local _, result = assert(pcall(executable_chunk))
+        return result
     end
     return {}
 end
