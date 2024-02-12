@@ -110,14 +110,16 @@ end
 
 local function parse_story(acxt, source)
     local lkeywords = acxt.keywords.get()
-    local ret_value, keywords_map = get_keywords_map(lkeywords)
+    local ret_value, result
+
+    ret_value, result = get_keywords_map(lkeywords)
     if not ret_value then
-        return false, keywords_map
+        return false, result
     end
 
     local context = {
         keywords = lkeywords,
-        keywords_map = keywords_map,
+        keywords_map = result,
 
         story = {
             suites = {},
@@ -138,7 +140,6 @@ local function parse_story(acxt, source)
         userdata = parse_story_from_file,
     }
 
-    local ret_value, result
     local source_handler_found = false
     for source_type, handler in pairs(source_type_handlers) do
         if type(source) == source_type then

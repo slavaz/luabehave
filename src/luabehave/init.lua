@@ -26,7 +26,8 @@ local function run_cmd_parser()
     local parser = argparse()
         :name "luabehave"
         :description
-        [[LuaBehave is a BDD (Behavior-Driven Development) testing framework that parses and runs BDD stories based on the Gherkin language. ]]
+        [[LuaBehave is a BDD (Behavior-Driven Development) testing framework that parses
+and runs BDD stories based on the Gherkin language. ]]
         :epilog "For more info, see https://github.com/slavaz/luabehave"
     parser:option "-c" "--config"
         :description "Path to the configuration file"

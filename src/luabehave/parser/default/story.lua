@@ -22,7 +22,7 @@ function story.parse(context, line)
     return RET_VALUES.SUCCESS
 end
 
-function story.parse_background(context, line)
+function story.parse_background(context, _)
     if context.current_scenario then
         return RET_VALUES.FAILURE, ("'%s' after scenario"):format(context.keywords.story_background)
     end

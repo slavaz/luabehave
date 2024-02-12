@@ -6,7 +6,7 @@ local submodules = {
     ["default"] = require('luabehave.reporter.default'),
 }
 
-function runner_factory.list(args)
+function runner_factory.list(_)
     return utils.get_table_keys(submodules)
 end
 

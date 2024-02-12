@@ -7,7 +7,7 @@ local is_table_empty = require "luabehave.utils".is_table_empty
 local RET_VALUES = utils.RET_VALUES
 local STATE = utils.STORY_STATE
 
-local function then_when_callback(context, line, args)
+local function then_when_callback(context, _, args)
     if context.state ~= STATE.SCENARIO then
         return RET_VALUES.FAILURE, ("'%s' outside '%s' isn't allowed"):format(
             args.keyword_step_name, context.keywords.scenario)
@@ -15,7 +15,7 @@ local function then_when_callback(context, line, args)
     return RET_VALUES.SUCCESS
 end
 
-local function given_callback(context, line, args)
+local function given_callback(context, _, args)
     if context.state == STATE.SCENARIO_EXAMPLES then
         return RET_VALUES.FAILURE, ("'%s' inside '%s' isn't not allowed"):format(
             args.keyword_step_name, context.keywords.examples)
@@ -23,7 +23,7 @@ local function given_callback(context, line, args)
     return RET_VALUES.SUCCESS
 end
 
-local function and_callback(context, line, args)
+local function and_callback(context, _, args)
     if context.state == STATE.SCENARIO_EXAMPLES then
         return RET_VALUES.FAILURE, ("'%s' inside '%s' isn't not allowed"):format(
             args.keyword_step_name, context.keywords.examples)
@@ -45,14 +45,14 @@ local function parse_step(context, line, args)
     if context.state == STATE.SCENARIO then context.current_steps = args.scenario_steps_table end
 
     local a_keyword = args.keyword_step_name
-    local ret_value, result = parse_line(line:sub(#a_keyword + 1), context.keywords)
+    ret_value, result = parse_line(line:sub(#a_keyword + 1), context.keywords)
     if not ret_value then return ret_value, result end
     context.current_step = result
     add_to_table(context.current_steps, context.current_step)
     return RET_VALUES.SUCCESS
 end
 
-function steps.parse_given(context, line, args)
+function steps.parse_given(context, line, _)
     local args = {
         keyword_step_name = context.keywords.before_step,
         check_environtent_callback = given_callback,

@@ -8,7 +8,7 @@ local levels = {
     [LEVELS.ERROR] = 'ERROR',
 }
 
- 
+
 local default_output = {
     name = function() return 'default' end,
 

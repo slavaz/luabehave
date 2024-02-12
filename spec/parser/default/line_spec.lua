@@ -21,7 +21,7 @@ local keywords = {
 describe("line_parser", function()
     it("should parse a line with no special characters", function()
         local line = "This is a regular line"
-        local is_success, result = parse_line(line, keywords)
+        local is_success, result = parse_line(line)
         assert.is_true(is_success, got_error(result))
 
         assert.are.same(line, result.name)

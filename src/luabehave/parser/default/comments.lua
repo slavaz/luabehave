@@ -5,9 +5,9 @@ local utils = require("luabehave.utils")
 local RET_VALUES = parser_utils.RET_VALUES
 
 function comments.parse(context, line)
-    local line = utils.trim(line)
+    local lline = utils.trim(line)
     for _, comment in ipairs(context.keywords.comments) do
-        if utils.startswith(line, comment) then
+        if utils.startswith(lline, comment) then
             return RET_VALUES.SUCCESS
         end
     end

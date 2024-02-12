@@ -1,4 +1,4 @@
-local function get(acxt)
+local function get(_)
     return {
         suite                 = "Suite: ",
         story                 = "Story: ",

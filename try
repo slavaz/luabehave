@@ -1,4 +1,10 @@
-#!/bin/sh
-luarocks remove luabehave  --force --local >/dev/null
+#!/bin/bash
+set -e
+
+busted .
+
+luacheck .
+
+luarocks remove luabehave  --force --local >/dev/null || echo 'No rock'
 luarocks make --local
-luabehave "$@"
+luabehave "$@" && echo -e "\n\nALL IS OK!"

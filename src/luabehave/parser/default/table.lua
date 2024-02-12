@@ -1,13 +1,13 @@
 local parse_table_line = require("luabehave.parser.default.table_line")
 local parser_utils = require("luabehave.parser.default.utils")
-utils = require("luabehave.utils")
+local utils = require("luabehave.utils")
 
 local RET_VALUES = parser_utils.RET_VALUES
 
-local function parse_comments(table_context, line, lkeywords)
-    local line = utils.trim(line)
+local function parse_comments(_, line, lkeywords)
+    local lline = utils.trim(line)
     for _, comment in ipairs(lkeywords.comments) do
-        if utils.startswith(line, comment) then
+        if utils.startswith(lline, comment) then
             return RET_VALUES.SUCCESS
         end
     end
@@ -86,13 +86,13 @@ local function parse_table(table_context, line, keywords)
         [keywords.table_row] = table_row_handler ,
     }
     local ret_value, result
-    local line = utils.trim(line)
-    ret_value, result = validate_line(table_context, line, keywords)
+    local lline = utils.trim(line)
+    ret_value, result = validate_line(table_context, lline, keywords)
     if ret_value ~= RET_VALUES.SUCCESS then
         return ret_value, result
     end
 
-    local line = utils.trim(line)
+    lline = utils.trim(lline)
     if not table_context.initialized then
         table_context.initialized = true
         table_context.parsing_started = false
@@ -101,15 +101,15 @@ local function parse_table(table_context, line, keywords)
         table_context.rows = {}
     end
 
-    ret_value, result = parse_comments(table_context, line, keywords)
+    ret_value, result = parse_comments(table_context, lline, keywords)
     if ret_value ~= RET_VALUES.SKIP then
         return ret_value, result
     end
 
     for keyword, handler in pairs(keywords_map) do
-        if utils.startswith(line, keyword) then
-            ret_value, result = handler(table_context, line, keyword, keywords)
-            if not ret_value ~= RET_VALUES.SKIP then
+        if utils.startswith(lline, keyword) then
+            ret_value, result = handler(table_context, lline, keyword, keywords)
+            if ret_value ~= RET_VALUES.SKIP then
                 return ret_value, result
             end
         end

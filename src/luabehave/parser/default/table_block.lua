@@ -9,14 +9,14 @@ local RET_VALUES = parser_utils.RET_VALUES
 local STATE = parser_utils.STORY_STATE
 
 function table_block.parse(context, line)
-    local line = utils.trim(line)
+    local lline = utils.trim(line)
 
     if not (context.state == STATE.SCENARIO_EXAMPLES  or
         context.state == STATE.SCENARIO or
         context.state == STATE.BACKGROUND) then
         return RET_VALUES.SKIP
     end
-    local ret_code, result = table_parser.parse(context.table, line, context.keywords)
+    local ret_code, result = table_parser.parse(context.table, lline, context.keywords)
     if ret_code == RET_VALUES.SUCCESS then
         return RET_VALUES.SUCCESS
     end

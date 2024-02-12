@@ -12,18 +12,18 @@ local function get_upvalue(fn, search_name)
     end
 end
 
-function environment.set_for_func(func, environment)
-    debug.setupvalue(func, get_upvalue (func, "_ENV"), environment)
+function environment.set_for_func(func, env)
+    debug.setupvalue(func, get_upvalue(func, "_ENV"), env)
 end
 
-function environment.init(parent_environment)
-    local environment = setmetatable({}, { __index = _G })
-    if parent_environment then
-        environment.get_parent_environment = function(self)
-            return parent_environment
+function environment.init(parent_env)
+    local env = setmetatable({}, { __index = _G })
+    if parent_env then
+        env.get_parent_environment = function(_)
+            return parent_env
         end
     end
-    return environment
+    return env
 end
 
 return environment

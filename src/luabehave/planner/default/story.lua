@@ -6,7 +6,7 @@ local validate_args = require('luabehave.finder.default.args')
 
 local function add_before_story_step(acxt, context)
     local context_snapshot = context:snapshot()
-    utils.add_to_table(context.executable_steps, function(n)
+    utils.add_to_table(context.executable_steps, function()
         acxt.output.info("Running story: " .. context_snapshot.story_name)
         if context.step_implementations.before_story then
             return make_call(acxt,

@@ -24,7 +24,7 @@ function scenario.parse(context, line)
     return RET_VALUES.SUCCESS
 end
 
-function scenario.parse_examples(context, line)
+function scenario.parse_examples(context, _)
     if context.state == STATE.SCENARIO_EXAMPLES then
         return RET_VALUES.FAILURE, ("Only one set of '%s' is allowed per '%s'")
             :format(context.keywords.scenario_parametrized, context.keywords.scenario)

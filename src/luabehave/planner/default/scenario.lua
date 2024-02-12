@@ -52,16 +52,16 @@ local function has_unimplemented_steps_in(scenario_steps, step_implementations)
     return ret_val
 end
 
-function scenario.has_unimplemented_steps(context, scenario)
-    if has_unimplemented_steps_in(scenario.given_steps,
+function scenario.has_unimplemented_steps(context, parsed_scenario)
+    if has_unimplemented_steps_in(parsed_scenario.given_steps,
             context.step_implementations["given"]) then
         return true
     end
-    if has_unimplemented_steps_in(scenario.when_steps,
+    if has_unimplemented_steps_in(parsed_scenario.when_steps,
             context.step_implementations["when"]) then
         return true
     end
-    if has_unimplemented_steps_in(scenario.then_steps,
+    if has_unimplemented_steps_in(parsed_scenario.then_steps,
             context.step_implementations["then"]) then
         return true
     end
