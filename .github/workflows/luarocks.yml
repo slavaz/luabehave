@@ -1,0 +1,38 @@
+#
+name: Publish package on LuaRocks
+
+# This workflow runs when any of the following occur:
+# - A push is made to a branch called `main`
+# - A tag starting with "v" is created
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+env:
+  IMAGE_NAME: luabehave
+#
+jobs:
+  upload:
+    name: Build rocks and upload to LuaRocks
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup ‘lua’
+        uses: leafo/gh-actions-lua@v10
+      - name: Setup ‘luarocks’
+        uses: leafo/gh-actions-luarocks@v4
+      - name: Setup dependencies
+        run: |
+          luarocks install dkjson
+      - name: Upload dev rockspec to luarocks
+        # Upload dev rockspecs any time they are touched
+        run: |
+          args="--temp-key ${{ secrets.LUAROCKS_APIKEY }} --force"
+          luarocks upload $args -- luabehave-scm-1.rockspec
