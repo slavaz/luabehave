@@ -72,7 +72,6 @@ end
 
 function ContextClass:add(step_context)
     local breadcrumb = self:make_breadcrumb(step_context)
-
     self:add_suite(breadcrumb)
     self:add_story(breadcrumb)
     self:add_scenario(breadcrumb)

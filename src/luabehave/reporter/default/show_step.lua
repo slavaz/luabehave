@@ -27,7 +27,8 @@ function private.get_msg(step_context)
 end
 
 function private.get_format(step_context)
-    if step_context.context_snapshot.suite.story.unimplemented then
+    if step_context.context_snapshot.suite.story.unimplemented
+    or step_context.context_snapshot.suite.story.scenario.unimplemented then
         return "Skipping %s %s"
     end
     return "Running %s %s"

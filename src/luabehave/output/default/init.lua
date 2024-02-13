@@ -46,7 +46,10 @@ end
 
 function default_output.print(level, msg)
     if default_output.level > level then return end
-    print(("[%s]: %s"):format(levels[level], msg))
+    default_output.raw_print(("[%s]: %s"):format(levels[level], msg))
 end
 
+function default_output.raw_print(msg)
+    print(msg)
+end
 return default_output
