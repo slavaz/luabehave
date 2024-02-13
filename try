@@ -5,6 +5,8 @@ busted .
 
 luacheck .
 
+luacov src/
+
 luarocks remove luabehave  --force --local >/dev/null || echo 'No rock'
 luarocks make --local
 luabehave "$@" && echo -e "\n\nALL IS OK!"

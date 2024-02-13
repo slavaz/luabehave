@@ -1,4 +1,4 @@
-describe("tests for suite list", function()
+describe("tests for #planner.default.suite_list", function()
     local validate_args = spy(function(args)
         return args
     end)

@@ -22,10 +22,12 @@ dependencies = {
   'lua >= 5.2',
   'luassert >= 1.9.0',
   'argparse >= 0.7.1',
+  'penlight >= 1.13.1-1'
 }
 
 test_dependencies = {
   "busted",
+  'luacov >=  0.15.0-1',
 }
 
 test = {
@@ -66,9 +68,8 @@ build = {
       ["luabehave.planner.init"] = "src/luabehave/planner/init.lua",
       ["luabehave.planner.default.init"] = "src/luabehave/planner/default/init.lua",
       ["luabehave.planner.default.args"] = "src/luabehave/planner/default/args.lua",
-      ["luabehave.planner.default.breadcrumbs"] = "src/luabehave/planner/default/breadcrumbs.lua",
       ["luabehave.planner.default.context"] = "src/luabehave/planner/default/context.lua",
-      ["luabehave.planner.default.make_call"] = "src/luabehave/planner/default/make_call.lua",
+      ["luabehave.planner.default.has_unimplemented"] = "src/luabehave/planner/default/has_unimplemented.lua",
       ["luabehave.planner.default.scenario"] = "src/luabehave/planner/default/scenario.lua",
       ["luabehave.planner.default.step"] = "src/luabehave/planner/default/step.lua",
       ["luabehave.planner.default.story"] = "src/luabehave/planner/default/story.lua",
@@ -77,15 +78,23 @@ build = {
       ["luabehave.reporter.init"] = "src/luabehave/reporter/init.lua",
       ["luabehave.reporter.default.init"] = "src/luabehave/reporter/default/init.lua",
       ["luabehave.reporter.default.collect"] = "src/luabehave/reporter/default/collect.lua",
+      ["luabehave.reporter.default.context"] = "src/luabehave/reporter/default/context.lua",
       ["luabehave.reporter.default.show"] = "src/luabehave/reporter/default/show.lua",
+      ["luabehave.reporter.default.show_suite"] = "src/luabehave/reporter/default/show_suite.lua",
+      ["luabehave.reporter.default.show_story"] = "src/luabehave/reporter/default/show_story.lua",
+      ["luabehave.reporter.default.show_scenario"] = "src/luabehave/reporter/default/show_scenario.lua",
+      ["luabehave.reporter.default.show_step"] = "src/luabehave/reporter/default/show_step.lua",
+      ["luabehave.reporter.default.show_summary"] = "src/luabehave/reporter/default/show_summary.lua",
       ["luabehave.runner.init"] = "src/luabehave/runner/init.lua",
       ["luabehave.runner.default.init"] = "src/luabehave/runner/default/init.lua",
+      ["luabehave.runner.default.execute"] = "src/luabehave/runner/default/execute.lua",
       ["luabehave.environment"] = "src/luabehave/environment.lua",
       ["luabehave.utils"] = "src/luabehave/utils.lua",
       ["luabehave.args.file"] = "src/luabehave/args/file.lua",
       ["luabehave.args.validate"] = "src/luabehave/args/validate.lua",
       ["luabehave.init"] = "src/luabehave/init.lua",
       ["luabehave.run"] = "src/luabehave/run.lua",
+      ["luabehave.exit_handler"] = "src/luabehave/exit_handler.lua",
    },
    install = {
       bin = {

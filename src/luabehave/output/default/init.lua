@@ -14,6 +14,11 @@ local default_output = {
 
     level = LEVELS.INFO,
 }
+function default_output.init(acxt)
+    if acxt.args.log_level then
+        default_output.set_level(acxt.args.log_level)
+    end
+end
 
 function default_output.trace(msg)
     default_output.print(LEVELS.TRACE, msg)
@@ -36,7 +41,7 @@ function default_output.error(msg)
 end
 
 function default_output.set_level(level)
-    default_output.level = level
+    default_output.level = LEVELS[level:upper()]
 end
 
 function default_output.print(level, msg)

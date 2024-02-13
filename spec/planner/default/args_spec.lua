@@ -1,4 +1,4 @@
-describe("Testing args function", function()
+describe("Tests for #planner.default.args", function()
     local args = require("luabehave.planner.default.args")
 
     it("should return default values when no args are provided", function()

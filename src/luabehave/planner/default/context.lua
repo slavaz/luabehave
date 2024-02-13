@@ -13,6 +13,7 @@ local function get_default_scenario(self)
     return {
         parsed = nil,
         name = "",
+        number = 0,
         environment = environment.init(self.current_environment),
         unimplemented = false,
         examples = {
@@ -29,6 +30,7 @@ end
 local function get_default_story(self)
     return {
         parsed = {},
+        unimplemented = false,
         name = "",
         environment = environment.init(self.current_environment),
         scenario = get_default_scenario(self),
@@ -46,14 +48,26 @@ end
 function ContextClass:snapshot()
     return {
         current_environment = self.current_environment,
-        suite_name = self.suite.name,
-        story_name = self.suite.story.name,
-        story_path = self.suite.story.path,
-        scenario_name = self.suite.story.scenario.name,
-        scenario_unimplemented = self.suite.story.scenario.unimplemented,
-        scenario_examples_present = self.suite.story.scenario.examples.present,
-        scenario_examples_args = self.suite.story.scenario.examples.args,
-        scenario_examples_row_number = self.suite.story.scenario.examples.row_number,
+        suite = {
+            name = self.suite.name,
+            story = {
+                environment = self.suite.story.environment,
+                unimplemented = self.suite.story.unimplemented,
+                name = self.suite.story.name,
+                path = self.suite.story.path,
+                scenario = {
+                    environment = self.suite.story.scenario.environment,
+                    number = self.suite.story.scenario.number,
+                    name = self.suite.story.scenario.name,
+                    unimplemented = self.suite.story.scenario.unimplemented,
+                    examples = {
+                        present = self.suite.story.scenario.examples.present,
+                        args = self.suite.story.scenario.examples.args,
+                        row_number = self.suite.story.scenario.examples.row_number,
+                    }
+                }
+            }
+        }
     }
 end
 

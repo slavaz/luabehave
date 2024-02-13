@@ -1,6 +1,9 @@
 return {
-default = {
-	helper = "./src/luabehave/luassert/has_value.lua",
+    _all = {
+	coverage = true
+    },
+    default = {
+	helper = "./spec/helper.lua",
 	verbose = true,
 	["exclude-pattern"] = "example",
     }

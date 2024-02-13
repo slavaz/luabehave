@@ -1,42 +1,41 @@
-local suite = {}
-
 local utils = require('luabehave.utils')
-local make_stories_plan = require('luabehave.planner.default.story')
-local make_call = require("luabehave.planner.default.make_call")
+local prepare_stories_plan = require('luabehave.planner.default.story')
 local get_suites = require("luabehave.planner.default.suite_list")
 
-local function add_before_suite_step(acxt, context)
-    local context_snapshot = context:snapshot()
-    utils.add_to_table(context.executable_steps, function()
-        acxt.output.info(("Running test suite: %s"):format(context_snapshot.suite_name))
-        if context.step_implementations.before_suite then
-            return make_call(acxt,
-                {
-                    context_snapshot = context_snapshot,
-                    name = "__before_suite",
-                    func = context.step_implementations.before_suite.func,
-                    args = {}
-                })
-        end
-    end)
+local private = {}
+if _G["__tests"] then
+    _G["__tests"]["planner_suite_private"] = private
 end
 
-local function add_after_suite_step(acxt, context)
-    local context_snapshot = context:snapshot()
-    utils.add_to_table(context.executable_steps, function()
-        if context.step_implementations.after_suite then
-            return make_call(acxt,
-                {
-                    context_snapshot = context_snapshot,
-                    name = "__after_suite",
-                    func = context.step_implementations.after_suite.func,
-                    args = {}
-                })
-        end
-    end)
+function private.prepare_before_suite_handler(acxt, context)
+    local func = context.step_implementations.before_suite
+        and context.step_implementations.before_suite.func or nil
+    utils.add_to_table(context.executable_steps, {
+        keyword = acxt.keywords.get(acxt).suite,
+        context_snapshot = context:snapshot(),
+        step = {
+            name = "__before_suite",
+            func = func,
+            args = {},
+        },
+    })
 end
 
-function suite.make_plan(acxt, context)
+function private.prepare_after_suite_handler(acxt, context)
+    local func = context.step_implementations.after_suite
+        and context.step_implementations.after_suite.func or nil
+    utils.add_to_table(context.executable_steps, {
+        keyword = acxt.keywords.get(acxt).suite,
+        context_snapshot = context:snapshot(),
+        step = {
+            name = "__after_suite",
+            func = func,
+            args = {},
+        },
+    })
+end
+
+return function (acxt, context)
     local suites = get_suites(acxt, context)
     if #suites == 0 then
         return false, "No suites to run"
@@ -44,11 +43,9 @@ function suite.make_plan(acxt, context)
     context.suites = suites
     for _, suite_name in ipairs(suites) do
         context:init_suite(suite_name)
-        add_before_suite_step(acxt, context)
-        make_stories_plan(acxt, context)
-        add_after_suite_step(acxt, context)
+        private.prepare_before_suite_handler(acxt, context)
+        prepare_stories_plan(acxt, context)
+        private.prepare_after_suite_handler(acxt, context)
     end
     return true, context.executable_steps
 end
-
-return suite

@@ -1,5 +1,6 @@
 local collect = require('luabehave.reporter.default.collect')
-local show = require('luabehave.reporter.default.show')
+local show_func = require('luabehave.reporter.default.show')
+local show_summary_func = require('luabehave.reporter.default.show_summary')
 
 local default_reporter = {
 
@@ -13,7 +14,8 @@ local default_reporter = {
         }
     end,
     collect = collect,
-    show = show,
+    show = show_func,
+    show_summary = show_summary_func,
 }
 
 return default_reporter

@@ -17,8 +17,14 @@ return function(application_context)
     ret_val, step_contents = application_context.loader.load_steps(application_context, step_definitions)
     if not ret_val then return false, step_contents end
 
-    ret_val, execution_plan = application_context.planner.make_plan(application_context, parsed_stories, step_contents)
+    ret_val, execution_plan = application_context.planner.prepare_plan(
+        application_context,
+        parsed_stories,
+        step_contents
+    )
     if not ret_val then return false, execution_plan end
 
-    return application_context.runner.run(application_context, execution_plan)
+    application_context.runner.run(application_context, execution_plan)
+
+    application_context.reporter.show_summary(application_context)
 end

@@ -1,14 +1,9 @@
-local function run(_, execution_plan)
-    for _, step in ipairs(execution_plan) do
-        step()
-    end
-    return true
-end
+local execute_func = require("luabehave.runner.default.execute")
 
 local default_planner = {
     name = function() return 'default' end,
 
-    run = run,
+    run = execute_func,
 }
 
 return default_planner

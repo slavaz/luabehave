@@ -1,15 +1,13 @@
 local ContextClass = require('luabehave.planner.default.context')
-local suite = require('luabehave.planner.default.suite')
-
-local function make_plan(acxt, stories, step_implementations)
-    local context_obj = ContextClass(stories, step_implementations)
-    return suite.make_plan(acxt, context_obj)
-end
+local prepare_suites_plan = require('luabehave.planner.default.suite')
 
 local default_planner = {
     name = function() return 'default' end,
 
-    make_plan = make_plan,
+    prepare_plan = function(acxt, stories, step_implementations)
+        local context_obj = ContextClass(stories, step_implementations)
+        return prepare_suites_plan(acxt, context_obj)
+    end
 }
 
 return default_planner

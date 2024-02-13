@@ -1,6 +1,6 @@
-local utils = require('luabehave.utils')
+local Context = require("luabehave.reporter.default.context")
 
-return function(acxt, OUTPUT_LEVEL, step_execution_result)
-    step_execution_result.output_level = OUTPUT_LEVEL
-    utils.add_to_table(acxt.reporter.context.steps_results, step_execution_result)
+return function(acxt, steps_context)
+    acxt.reporter_context = acxt.reporter_context or Context()
+    acxt.reporter_context:add(steps_context)
 end

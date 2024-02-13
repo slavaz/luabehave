@@ -40,3 +40,5 @@ luac.out
 *.hex
 
 .luabehave
+luacov.report.out
+luacov.stats.out
