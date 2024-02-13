@@ -1,5 +1,5 @@
 # luabehave
-A Lua framework that allows to run BDD-style user stories.*
+A Lua framework that allows to run BDD-style user stories.
 
 ## Description
 
@@ -23,7 +23,10 @@ Story: Guess the word
     When the Breaker joins the Maker's game
     Then the Breaker must guess a word with 5 characters
 ```
+## Why it was written?
 
+I was too lazy to search for a suitable BDD-framework on the Internet, so I wrote my own.
+I know about the Cucumber project, but I don't like its Lua implementation...
 
 ## Installation
 
@@ -35,16 +38,31 @@ or
 luarocks make
 ```
 
-## Why it was written?
-
-I was too lazy to search for a suitable BDD-framework on the Internet, so I wrote my own.
-I know about the Cucumber project, but I don't like its Lua implementation...
-
 ## Usage
 
 The BDD-framework is based (but not strictly followed) on Gherkin language: https://cucumber.io/docs/gherkin/reference/#keywords
 
 For usage examples, see the [bdd/steps](https://github.com/slavaz/luabehave/tree/main/bdd/steps) and [bdd/stories](https://github.com/slavaz/luabehave/tree/main/bdd/stories) directories.
+
+### command line options
+
+```
+Usage: luabehave [-h] [-c <file>] [--suites <suite1>,<suite2>,...]
+       [--ignore-unimplemented] [--log-level <level>]
+
+LuaBehave is a BDD (Behavior-Driven Development) testing framework that parses
+and runs BDD stories based on the Gherkin language.
+
+Options:
+   -h, --help            Show this help message and exit.
+         -c <file>,      Path to the configuration file (default: .luabehave)
+   --config <file>
+   --suites <suite1>,<suite2>,...
+                         Comma-separated list of suites to run
+   --ignore-unimplemented
+                         Assume that all steps are implemented (exit code will be 0)
+   --log-level <level>   Set the log level. Mya be one of: trace, debug, info, warning, error (default: info)
+```
 
 ### Code
 
@@ -247,6 +265,11 @@ Some notes here:
  - each suite has own isolated execution environment for step definitions.
  - each story (feature) has own isolated execution environment based on suite env.
  - each scenario has own isolated execution environment based on story env.
+ 
+ It's possible to gain access to the 'parent' environment. For example, if a step wants to access the story-level environment, it can do so via the following call:
+ ```lua
+ local parent_env = get_parent_environment()
+ ```
 
 ## Contributing
 

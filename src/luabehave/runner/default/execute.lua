@@ -11,6 +11,7 @@ function private.is_step_unimplemented(step_context)
 end
 
 function private.execute_step(acxt, step_context)
+    step_context.success = true
     if private.is_step_unimplemented(step_context) then
         return true
     end
@@ -21,9 +22,9 @@ function private.execute_step(acxt, step_context)
     do
         _G = step_context.context_snapshot.current_environment
         ret_val, result = pcall(step_context.step.func, step_context.step.args)
-        step_context.success = ret_val
         _G = orig_G
     end
+    step_context.success = ret_val
     if not ret_val then
         acxt.output.error(result)
         acxt.runner_results.has_failed_steps = true
