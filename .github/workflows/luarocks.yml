@@ -2,12 +2,9 @@
 name: Publish package on LuaRocks
 
 # This workflow runs when any of the following occur:
-# - A push is made to a branch called `main`
 # - A tag starting with "v" is created
 on:
   push:
-    branches:
-      - main
     tags:
       - v*
 env:
