@@ -1,6 +1,5 @@
-- add github ci/cd
-- upload the project as a lua module to https://luarocks.org/
 - improove (or write new one) 'output' submodule (eg. add colors to output)
 - code optimisation with Penlight usage
 - tests coverage
 - fixing bugs if found
+- reporter: add into summary a list of failed steps, like suite->story->scenario->steps
