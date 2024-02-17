@@ -19,18 +19,21 @@ describe("Testing environment functions", function()
     end)
 
     it("should initialize environment correctly without parent", function()
-        local env = environment.init()
-
+        local acxt = { global_environment = { var0 = "value0" } }
+        local env = environment.init(acxt)
         orig_ENV.assert.is_table(env)
         orig_ENV.assert.is_nil(env.get_parent_environment)
+        orig_ENV.assert.equal("value0", env.var0)
     end)
 
     it("should initialize environment correctly with parent", function()
         local parent_env = { var = "value" }
-        local env = environment.init(parent_env)
+        local acxt = { global_environment = { var0 = "value0" } }
+        local env = environment.init(acxt, parent_env)
 
         orig_ENV.assert.is_table(env)
         orig_ENV.assert.is_function(env.get_parent_environment)
         orig_ENV.assert.equal(parent_env, env:get_parent_environment())
+        orig_ENV.assert.equal("value0", env.var0)
     end)
 end)

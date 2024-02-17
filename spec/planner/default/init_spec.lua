@@ -20,8 +20,8 @@ describe("Tests for #planner.default.init", function()
 
         local stories = { "story1" }
         local step_implementations = { "step1" }
-        local context_expected = ContextClass(stories, step_implementations)
         local acxt = {}
+        local context_expected = ContextClass(acxt, stories, step_implementations)
         local plan = assert(default_planner.prepare_plan(acxt, stories, step_implementations))
         assert.are.same({ "some execution plan" }, plan)
         assert.spy(suite_func).was.called_with(acxt, context_expected)

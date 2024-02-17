@@ -1,5 +1,9 @@
 return function()
     local utils = require("luabehave.utils")
+    local global_environment = utils.merge(_G, {})
+    global_environment.luabehave = nil
+    global_environment["luabehave.utils"] = nil
+
     local run = require("luabehave.run")
     local validate_args = require("luabehave.args.validate")
     local get_args_from_file = require("luabehave.args.file")
@@ -58,6 +62,7 @@ and runs BDD stories based on the Gherkin language.]]
 
     local application_context = {
         args = utils.merge(file_args, cmd_args),
+        global_environment = global_environment,
     }
 
     init_application_context(application_context)

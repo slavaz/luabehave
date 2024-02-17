@@ -14,7 +14,7 @@ local function get_default_scenario(self)
         parsed = nil,
         name = "",
         number = 0,
-        environment = environment.init(self.current_environment),
+        environment = environment.init(self.acxt, self.current_environment),
         unimplemented = false,
         examples = {
             present = false,
@@ -32,7 +32,7 @@ local function get_default_story(self)
         parsed = {},
         unimplemented = false,
         name = "",
-        environment = environment.init(self.current_environment),
+        environment = environment.init(self.acxt, self.current_environment),
         scenario = get_default_scenario(self),
     }
 end
@@ -40,7 +40,7 @@ end
 local function get_default_suite(self)
     return {
         name = "",
-        environment = environment.init(),
+        environment = environment.init(self.acxt),
         story = get_default_story(self),
     }
 end
@@ -91,16 +91,15 @@ function ContextClass:init_suite(suite_name)
     self.current_environment = self.suite.environment
 end
 
-function ContextClass:_init(stories, step_implementations)
+function ContextClass:_init(acxt, stories, step_implementations)
     local context_obj = {
         step_implementations = step_implementations,
         stories = stories,
-
+        acxt = acxt,
         executable_steps = {},
-
         curent_environment = nil,
-        suite = get_default_suite(self),
     }
+    context_obj.suite = get_default_suite(context_obj)
     setmetatable(context_obj, self)
     return context_obj
 end

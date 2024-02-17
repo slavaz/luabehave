@@ -24,16 +24,16 @@ describe("tests for #planner.default.scenario", function()
     it("should add before step", function()
         require(package_name)
         local private = get_private()
-        local context = Context({}, {
-            before_story = { func = function() end },
-            before_scenario = { func = function() end },
-            before_suite = { func = function() end },
-        })
         local acxt = {
             keywords = {
                 get = function(s) return { scenario = "Scenario", } end
             }
         }
+        local context = Context(acxt, {}, {
+            before_story = { func = function() end },
+            before_scenario = { func = function() end },
+            before_suite = { func = function() end },
+        })
         private.prepare_before_handler(acxt, context)
         assert.is.equal(1, #context.executable_steps)
         assert.are.same({
@@ -50,16 +50,16 @@ describe("tests for #planner.default.scenario", function()
     it("should add after step", function()
         require(package_name)
         local private = get_private()
-        local context = Context({}, {
-            after_story = { func = function() end },
-            after_scenario = { func = function() end },
-            after_suite = { func = function() end },
-        })
         local acxt = {
             keywords = {
                 get = function(s) return { scenario = "Scenario", } end
             }
         }
+        local context = Context(acxt, {}, {
+            after_story = { func = function() end },
+            after_scenario = { func = function() end },
+            after_suite = { func = function() end },
+        })
         private.prepare_after_handler(acxt, context)
         assert.is.equal(1, #context.executable_steps)
         assert.are.same({
@@ -75,19 +75,6 @@ describe("tests for #planner.default.scenario", function()
     it("should prepare a single plan", function()
         require(package_name)
         local private = get_private()
-        local context = Context({}, { ['given'] = {}, ['when'] = {}, ['then'] = {} })
-        context.suite.story.scenario = {
-            parsed = {
-                given_steps = { { name = "step1" }, },
-                when_steps = { { name = "step2" }, },
-                then_steps = { { name = "step3" } },
-            },
-            examples = {
-                present = false,
-                args = {},
-                row_number = 0,
-            }
-        }
         local acxt = {
             keywords = {
                 get = function(s)
@@ -98,6 +85,19 @@ describe("tests for #planner.default.scenario", function()
                         after_step = "Then",
                     }
                 end
+            }
+        }
+        local context = Context(acxt, {}, { ['given'] = {}, ['when'] = {}, ['then'] = {} })
+        context.suite.story.scenario = {
+            parsed = {
+                given_steps = { { name = "step1" }, },
+                when_steps = { { name = "step2" }, },
+                then_steps = { { name = "step3" } },
+            },
+            examples = {
+                present = false,
+                args = {},
+                row_number = 0,
             }
         }
         private.prepare_single_plan(acxt, context)

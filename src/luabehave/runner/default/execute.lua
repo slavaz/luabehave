@@ -1,6 +1,8 @@
 local reporter = require("luabehave.reporter.default")
+local environment = require("luabehave.environment")
 
 local private = {}
+
 if _G["__tests"] then
     _G["__tests"]["runner_default_execute"] = private
 end
@@ -21,9 +23,11 @@ function private.execute_step(acxt, step_context)
     local orig_G = _G
     do
         _G = step_context.context_snapshot.current_environment
+        environment.set_for_func(step_context.step.func, step_context.context_snapshot.current_environment)
         ret_val, result = pcall(step_context.step.func, step_context.step.args)
-        _G = orig_G
     end
+    _G = orig_G
+
     step_context.success = ret_val
     if not ret_val then
         acxt.output.error(result)

@@ -100,7 +100,7 @@ local function call_steps(file_name, env)
     return true
 end
 
-return function(_, file_list)
+return function(acxt, file_list)
     local steps = {
         ["given"] = {},
         ["when"] = {},
@@ -114,7 +114,7 @@ return function(_, file_list)
     }
 
     for _, file_name in ipairs(file_list) do
-        local env = setmetatable({}, { __index = _G })
+        local env = setmetatable({}, { __index = acxt.global_environment })
         init_environment(env, steps)
 
         local ret_val, result = call_steps(file_name, env)

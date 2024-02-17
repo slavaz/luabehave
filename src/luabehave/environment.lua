@@ -16,8 +16,9 @@ function environment.set_for_func(func, env)
     debug.setupvalue(func, get_upvalue(func, "_ENV"), env)
 end
 
-function environment.init(parent_env)
-    local env = setmetatable({}, { __index = _G })
+function environment.init(acxt, parent_env)
+    local env = setmetatable({}, { __index = acxt.global_environment })
+    env._G = env
     if parent_env then
         env.get_parent_environment = function(_)
             return parent_env

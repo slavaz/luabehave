@@ -234,13 +234,12 @@ describe("tests for  tests for #planner.default.story", function()
     it("should prepare a plan for a story if private.in_current_suite returns true", function()
         require(package_name)
         local private = get_private()
-        local planner_context = Context({ ["path1"] = {} }, {})
         local args = { ["planner.default.suite.name"] = "name" }
         local acxt = {
             keywords = { get = function(acxt) return { story = "story" } end },
         }
-
-        local expected_planner_context = Context({ ["path1"] = {} }, {})
+        local planner_context = Context(acxt, { ["path1"] = {} }, {})
+        local expected_planner_context = Context(acxt, { ["path1"] = {} }, {})
         private.in_current_suite = spy(function(...) return true end)
         private.prepare_before_story_handler = spy()
         private.prepare_after_story_handler = spy()
@@ -258,12 +257,11 @@ describe("tests for  tests for #planner.default.story", function()
         package.loaded["luabehave.planner.default.has_unimplemented"] = mock.has_unimplemented_true
         require(package_name)
         local private = get_private()
-        local planner_context = Context({ ["path1"] = {} }, { given = {} })
         local args = { ["planner.default.suite.name"] = "name" }
         local acxt = {
             keywords = { get = function(acxt) return { story = "story" } end },
         }
-
+        local planner_context = Context(acxt, { ["path1"] = {} }, { given = {} })
         private.in_current_suite = spy(function(...) return true end)
         private.prepare_before_story_handler = spy()
         private.prepare_after_story_handler = spy()

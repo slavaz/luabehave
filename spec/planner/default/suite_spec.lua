@@ -68,7 +68,7 @@ describe("tests for #default.planner.suite", function()
                 get = function(acxt) return { suite = "suite" } end
             }
         }
-        local context = Context({}, {})
+        local context = Context(acxt, {}, {})
         context.step_implementations = {
             after_suite = {
                 func = function() end
@@ -88,14 +88,14 @@ describe("tests for #default.planner.suite", function()
             }
         }, context.executable_steps[1])
     end)
-    it("should prepare siotes plan", function()
+    it("should prepare suites plan", function()
         local suite_func = require(package_name)
         local private = get_private()
         private.prepare_before_suite_handler = spy.new(function() end)
         private.prepare_after_suite_handler = spy.new(function() end)
 
-        local acxt = {}
-        local context = Context({}, {})
+        local acxt = { global_environment = {} }
+        local context = Context(acxt, {}, {})
         suite_func(acxt, context)
         assert.spy(private.prepare_before_suite_handler).was.called(1)
         assert.spy(private.prepare_after_suite_handler).was.called(1)

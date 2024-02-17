@@ -4,7 +4,7 @@ describe("Tests for #planner.default.context", function()
     local context
 
     before_each(function ()
-        context = ContextClass()
+        context = ContextClass({},{},{})
     end)
 
     it("should initialize a default suite", function ()
