@@ -40,7 +40,7 @@ jobs:
         run: |
             luacov src/luabehave
             awk 'BEGIN{ b=0; p=0;} match($0,/^[=]+$/){ b=1;next;} match($0,/^Summary$/){if (b){p=1;}} /.*/ { if  (p) { print $0;} else {b=0;}}' < luacov.report.out | \
-            awk  'match($0, /Total.+[0-9]+\s+([0-9\.]+)%$/,a){t=a[1]} {print $0} END{ if (t<=90) {print "\n{ERROR} Low tests coverage (less than 90%) ; current=" t "%"; exit 1}};'; echo $?
+            awk  'match($0, /Total.+[0-9]+\s+([0-9\.]+)%$/,a){t=a[1]} {print $0} END{ if (t<=95) {print "\n{ERROR} Low tests coverage (less than 95%) ; current=" t "%"; exit 1}};'; echo $?
 
       - name: Report test coverage
         if: success()

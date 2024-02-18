@@ -77,11 +77,13 @@ function ContextClass:add(step_context)
     self:add_scenario(breadcrumb)
 
     if step_context.step.func == nil and breadcrumb.is_step then
+        self.suites.flags.unimplemented = true
         self.suites.names[breadcrumb.suite].unimplemented = true
         self.suites.names[breadcrumb.suite].names[breadcrumb.story].unimplemented = true
         self.suites.names[breadcrumb.suite].names[breadcrumb.story].names[breadcrumb.scenario].unimplemented = true
     end
     if not step_context.success then
+        self.suites.flags.failed = true
         self.suites.names[breadcrumb.suite].failed = true
         self.suites.names[breadcrumb.suite].names[breadcrumb.story].failed = true
         self.suites.names[breadcrumb.suite].names[breadcrumb.story].names[breadcrumb.scenario].failed = true

@@ -27,4 +27,5 @@ return function(application_context)
     application_context.runner.run(application_context, execution_plan)
 
     application_context.reporter.show_summary(application_context)
+    return true
 end
